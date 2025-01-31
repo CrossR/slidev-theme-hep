@@ -21,6 +21,10 @@ const props = defineProps({
   },
 });
 
+const style = computed(() => ({
+  background: SlidevConfig.themeConfig.primary,
+}));
+
 console.log("SlidevConfig:", SlidevConfig);
 console.log("subTitle:", props.titleSub);
 console.log("meeting:", props.meeting);
@@ -35,12 +39,9 @@ SlidevConfig.mainAuthor = props.authors.split(",")[0].trim();
 // First, check if there are any authors
 </script>
 <template>
-  <div class="slidev-layout cover" :style="style">
+  <div class="slidev-layout cover">
     <div class="my-auto w-full">
-      <div
-        class="block_back"
-        :style="{ background: SlidevConfig.themeConfig.primary }"
-      ></div>
+      <div class="block_back" :style="style"></div>
 
       <div class="title_headers">
         <h1>{{ SlidevConfig.title }}</h1>
