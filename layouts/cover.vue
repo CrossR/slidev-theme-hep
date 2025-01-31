@@ -11,24 +11,25 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  preTitle: {
+  titleSub: {
     type: String,
     default: "",
   },
-  preSub: {
-    type: String,
-    default: "",
-  },
-  preDate: {
+  talkDate: {
     type: String,
     default: new Date().toLocaleDateString(),
   },
 });
 
-console.log("title:", props.preTitle);
-console.log("subTitle:", props.preSub);
+console.log("SlidevConfig:", SlidevConfig);
+console.log("subTitle:", props.titleSub);
 console.log("meeting:", props.meeting);
+console.log("date:", props.talkDate);
 console.log("authors:", props.authors);
+
+// If there is multiple authors, store the first
+// in the "SlidevConfig.mainAuthor"
+SlidevConfig.mainAuthor = props.authors.split(",")[0].trim();
 
 // Process authors from dictionary to author name as key, and author affiliation as value
 // First, check if there are any authors
@@ -42,11 +43,12 @@ console.log("authors:", props.authors);
       ></div>
 
       <div class="title_headers">
-        <h1>{{ props.preTitle }}</h1>
-        <h2>{{ props.preSub }}</h2>
+        <h1>{{ SlidevConfig.title }}</h1>
+        <h2>{{ props.titleSub }}</h2>
         <div class="title_gap"></div>
         <h3>{{ props.authors }}</h3>
-        <h4>{{ props.preDate }}</h4>
+        <h4 v-if="props.meeting">{{ props.meeting }}</h4>
+        <h4>{{ props.talkDate }}</h4>
       </div>
 
       <slot> </slot>
