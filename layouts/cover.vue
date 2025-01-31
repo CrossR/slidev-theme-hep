@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { handleBackground, handleAuthor } from './layoutHelper'
-
+import { computed } from "vue";
+import SlidevConfig from "/@slidev/configs";
 
 const props = defineProps({
-  background: {
-    type: String,
-    default: 'ATLAS/ATLAS-Detector.png',
-  },
   authors: {
-    type: Object as () => Record<string, string>,
-    default: () => ({})
+    type: String,
+    default: "",
   },
   meeting: {
     type: String,
-    default: '',
+    default: "",
   },
   preTitle: {
     type: String,
-    default: 'An Example Title',
+    default: "",
+  },
+  preSub: {
+    type: String,
+    default: "",
   },
   preDate: {
     type: String,
@@ -26,58 +25,31 @@ const props = defineProps({
   },
 });
 
-
-const style = computed(() => handleBackground(props.background, true, 1.0));
-
-console.log(style);
-
-
-console.log('title:', props.preTitle);
-console.log('meeting:', props.meeting);
-console.log('author:', props.authors);
-
+console.log("title:", props.preTitle);
+console.log("subTitle:", props.preSub);
+console.log("meeting:", props.meeting);
+console.log("authors:", props.authors);
 
 // Process authors from dictionary to author name as key, and author affiliation as value
-const authorList: string[] = props.authors.map(author => Object.keys(author)[0]);
-
-const [authorsDict, instituteDict] = handleAuthor(props.authors);
-console.log(authorsDict);
-console.log(instituteDict);
-
+// First, check if there are any authors
 </script>
-
 <template>
   <div class="slidev-layout cover" :style="style">
     <div class="my-auto w-full">
-        <h1 class="">{{ props.preTitle }}</h1>
-        <p class="">{{ props.meeting }}</p>
+      <div
+        class="block_back"
+        :style="{ background: SlidevConfig.themeConfig.primary }"
+      ></div>
 
-        <div v-if="authorList.length" class="">
-        <p v-if="authorList.length">
-          <template v-for="(author, idx) in authorList">
-            <span :class="{ 'underline': idx === 0 }">{{ author }}</span>
-            <sup v-if="authorsDict[author].instituteNum.length > 0">
-              <template v-for="(num, index) in authorsDict[author].instituteNum">
-                <span v-if="index > 0">, </span>
-                <span>{{ num }}</span>
-              </template>
-              </sup>
-            <span v-if="(idx < authorList.length - 1 && authorList.length >= 3)">, </span>
-            <span v-if="idx === authorList.length - 2"> and </span>
-          </template>
-        </p>
-        <p v-if="preDate" id="date">{{ preDate }}</p>
-        </div>
+      <div class="title_headers">
+        <h1>{{ props.preTitle }}</h1>
+        <h2>{{ props.preSub }}</h2>
+        <div class="title_gap"></div>
+        <h3>{{ props.authors }}</h3>
+        <h4>{{ props.preDate }}</h4>
+      </div>
 
-        <slot> </slot>
-
-        <FootNote
-        :filled="false"
-        :separator="true"
-        x="l"
-        :footnotes="instituteDict"
-      />
-
+      <slot> </slot>
     </div>
   </div>
 </template>

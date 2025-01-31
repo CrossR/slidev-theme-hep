@@ -1,0 +1,10 @@
+/* Title slide block */
+div.block_back {
+    width: 760px;
+    height: 105%;
+    position: absolute;
+    top: 0px;
+    left: -260px;
+    transform: skew(29deg);
+    box-shadow: 10px -5px 7px rgba(0, 0, 0, 0.66);
+}
