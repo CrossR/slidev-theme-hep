@@ -9,18 +9,31 @@ const { $slidev, $nav, $page, $route } = useSlideContext();
 // For most talks, I want the slide number
 // to reflect the true number of slides in the talk.
 //
-// That is, don't include the cover slides, nor 
-// any backups.
+// That is, don't include any slides that are "hidden".
+// I use the frontmatter to hide slides, like so:
+// ---
+// level: -1
+// ---
 //
-// Getting the total number of slides is easy, lets
-// just hijack the $slidev.nav.tocTree.titleLevel
-// and set level === -1 in the frontmatter of the
-// slides we want to hide.
+// This means I can hide covers, backup slides, etc.
+// It also means if I have fake duplicated slides
+// to bring in annotations or new plots etc, I can
+// also hide them.
+//
+// Because of this, only count slides that have a
+// titleLevel that is not -1.
 const totalNumberNonHiddenSlides = $slidev.nav.tocTree.filter((slide) => slide.titleLevel !== -1).length;
 
 // Now we need to correct the current slide number, as well.
-// This is a bit more tricky, as we need to count the number
-// of slides that are not hidden.
+//
+// Broadly, we want to count backwards from the current slide
+// incrementing a counter for each slide that is not hidden.
+// This should give us the true slide number.
+//
+// For backup slides that are hidden, we should just return
+// the offset from the "Backup" slide to the current slide.
+// This means in a talk with "20" slides, and 5 backup slides,
+// the backups are slides 21-25.
 const currentSlideNum = computed(() => {
   const slideNum = $slidev.nav.currentPage;
   const slideIndex = slideNum - 1;
@@ -37,6 +50,7 @@ const currentSlideNum = computed(() => {
     tocEntry = $slidev.nav.tocTree[slideIndex - indexOffset];
     indexOffset++;
 
+    // If this is a non-hidden slide, increment the true slide number.
     if (tocEntry.titleLevel !== -1) {
       trueSlideNumber++;
     }
