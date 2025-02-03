@@ -13,7 +13,7 @@ const { $slidev, $nav, $page, $route } = useSlideContext();
 // any backups.
 //
 // Getting the total number of slides is easy, lets
-// just hijack the $slidev.nav.tocTree.level
+// just hijack the $slidev.nav.tocTree.titleLevel
 // and set level === -1 in the frontmatter of the
 // slides we want to hide.
 const totalNumberNonHiddenSlides = $slidev.nav.tocTree.filter((slide) => slide.titleLevel !== -1).length;
@@ -23,30 +23,33 @@ const totalNumberNonHiddenSlides = $slidev.nav.tocTree.filter((slide) => slide.t
 // of slides that are not hidden.
 const currentSlideNum = computed(() => {
   const slideNum = $slidev.nav.currentPage;
-  let tocEntry = $slidev.nav.tocTree[slideNum - 1];
+  const slideIndex = slideNum - 1;
+  let tocEntry = $slidev.nav.tocTree[slideIndex];
 
-  // If the current slide is hidden, drop back
-  // to the previous non-hidden slide.
-  let offset = 1;
+  // We are going to backtrack, counting the slide number
+  // as we go, but only counting the slides that are not hidden.
+  // This should give us the true slide number.
+  let trueSlideNumber = 0;
+  let indexOffset = 0;
 
-  while (tocEntry.titleLevel === -1) {
-    offset++;
+  while (tocEntry.no !== 1) {
 
-    if (slideNum - offset < 0) {
-      return 0;
+    tocEntry = $slidev.nav.tocTree[slideIndex - indexOffset];
+    indexOffset++;
+
+    if (tocEntry.titleLevel !== -1) {
+      trueSlideNumber++;
     }
-
-    tocEntry = $slidev.nav.tocTree[slideNum - offset];
 
     // If at any point in our backtracking we hit
     // a slide containing "Backup/Hidden", we should
     // just return the slide number as is.
     if (tocEntry.title.includes("Backup") || tocEntry.title.includes("Hidden")) {
-      return totalNumberNonHiddenSlides + offset - 1;
+      return totalNumberNonHiddenSlides + indexOffset - 1;
     }
   }
 
-  return slideNum - offset;
+  return trueSlideNumber;
 });
 
 // Normal slide, but with a persistent footer
