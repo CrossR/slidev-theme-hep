@@ -24,7 +24,6 @@ const totalNumberNonHiddenSlides = $slidev.nav.tocTree.filter((slide) => slide.t
 const currentSlideNum = computed(() => {
   const slideNum = $slidev.nav.currentPage;
   let tocEntry = $slidev.nav.tocTree[slideNum - 1];
-  console.log(tocEntry);
 
   // If the current slide is hidden, drop back
   // to the previous non-hidden slide.
@@ -32,6 +31,11 @@ const currentSlideNum = computed(() => {
 
   while (tocEntry.titleLevel === -1) {
     offset++;
+
+    if (slideNum - offset < 0) {
+      return 0;
+    }
+
     tocEntry = $slidev.nav.tocTree[slideNum - offset];
 
     // If at any point in our backtracking we hit
