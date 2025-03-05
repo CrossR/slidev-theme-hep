@@ -82,6 +82,19 @@ h5 {
   font-family: "Oswald";
 }
 
+.slidev-layout h1 {
+  padding-bottom: 0.8em;
+}
+
+/* But not for the cover slide */
+.cover h1 {
+  padding-bottom: 0;
+}
+
+.cover h2 {
+  padding-bottom: 0.8em;
+}
+
 img,
 video,
 iframe {

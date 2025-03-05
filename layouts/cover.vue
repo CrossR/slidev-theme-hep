@@ -45,8 +45,7 @@ SlidevConfig.mainAuthor = props.authors.split(",")[0].trim();
 
       <div class="title_headers">
         <h1>{{ SlidevConfig.title }}</h1>
-        <h2>{{ props.titleSub }}</h2>
-        <div class="title_gap"></div>
+        <h2 v-if="props.titleSub">{{ props.titleSub }}</h2>
         <h3>{{ props.authors }}</h3>
         <h4 v-if="props.meeting">{{ props.meeting }}</h4>
         <h4>{{ props.talkDate }}</h4>
