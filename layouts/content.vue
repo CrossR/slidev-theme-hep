@@ -5,6 +5,14 @@ import { useSlideContext } from "@slidev/client"
 
 const { $slidev, $nav, $page, $route } = useSlideContext();
 
+// Custom properties for the default layout, allowing some slight tweaks.
+const props = defineProps({
+  width: {
+    type: String,
+    default: "w-4/5",
+  },
+});
+
 // We need to correct the number of slides.
 // For most talks, I want the slide number
 // to reflect the true number of slides in the talk.
@@ -70,11 +78,11 @@ const currentSlideNum = computed(() => {
 </script>
 <template>
   <div class="slidev-layout default">
-    <div class="my-auto w-4/5">
+    <div class="my-auto" :class="props.width">
       <slot> </slot>
 
       <div v-if="$nav.currentLayout !== 'cover'" class="footer">
-        <div style="padding-top: 6px">{{ SlidevConfig.authors }} - {{ SlidevConfig.title }} - {{ SlidevConfig.talkDate
+        <div style="padding-top: 6px">{{ SlidevConfig.author }} - {{ SlidevConfig.title }} - {{ SlidevConfig.talkDate
           }}</div>
       </div>
 
