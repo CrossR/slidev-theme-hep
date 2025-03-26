@@ -150,6 +150,24 @@ h3 {
   justify-content: center;
 }
 
+.slidev-layout table {
+  font-size: medium;
+}
+
+.slidev-layout thead {
+  background-color: #3c1053;
+  color: white;
+}
+
+.slidev-layout th {
+  text-align: center;
+  font-weight: 600;
+}
+
+.slidev-layout td {
+  text-align: center;
+}
+
 .slide-number {
   font-size: 10pt;
   font-family: "Oswald";
