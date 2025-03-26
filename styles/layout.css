@@ -115,15 +115,6 @@ li p {
   margin-bottom: 10px;
 }
 
-th,
-td {
-  padding: 1px;
-  font-size: 1.2em;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: center;
-}
-
 /* Headers and Fonts*/
 h1,
 h2,
@@ -151,7 +142,9 @@ h3 {
 }
 
 .slidev-layout table {
+  width: fit-content;
   font-size: medium;
+  margin: 0px auto;
 }
 
 .slidev-layout thead {
@@ -162,10 +155,17 @@ h3 {
 .slidev-layout th {
   text-align: center;
   font-weight: 600;
+  padding: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .slidev-layout td {
-  text-align: center;
+  text-align: right;
+}
+
+.slidev-layout td:first-child {
+  text-align: left;
 }
 
 .slide-number {

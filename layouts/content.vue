@@ -83,7 +83,7 @@ const currentSlideNum = computed(() => {
 
       <div v-if="$nav.currentLayout !== 'cover'" class="footer">
         <div style="padding-top: 6px">{{ SlidevConfig.author }} - {{ SlidevConfig.title }} - {{ SlidevConfig.talkDate
-          }}</div>
+        }}</div>
       </div>
 
       <div class="slide-number">
