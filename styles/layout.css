@@ -127,7 +127,7 @@ h3 {
 }
 
 .footer {
-  border-top: 1.5px solid #3c1053;
+  border-top: 1.5px solid #440379;
   font-size: 10pt;
   font-family: "Oswald";
   text-align: center;
@@ -148,7 +148,7 @@ h3 {
 }
 
 .slidev-layout thead {
-  background-color: #3c1053;
+  background-color: #440379;
   color: white;
 }
 
