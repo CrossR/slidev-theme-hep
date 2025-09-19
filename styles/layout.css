@@ -141,6 +141,17 @@ h3 {
   justify-content: center;
 }
 
+.author {
+  font-size: 24pt;
+  font-family: "Oswald";
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  margin-right: 200px;
+  margin-top: 40px;
+  padding: 5px;
+}
+
 .slidev-layout table {
   width: fit-content;
   font-size: medium;

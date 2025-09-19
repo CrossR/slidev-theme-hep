@@ -7,9 +7,15 @@ const { $slidev, $nav, $page, $route } = useSlideContext();
 
 // Custom properties for the default layout, allowing some slight tweaks.
 const props = defineProps({
+  // Width of the content area.
   width: {
     type: String,
     default: "w-4/5",
+  },
+  // Name of the person whose work this is.
+  author: {
+    type: String,
+    default: "",
   },
 });
 
@@ -80,6 +86,11 @@ const currentSlideNum = computed(() => {
   <div class="slidev-layout default">
     <div class="my-auto" :class="props.width">
       <slot> </slot>
+
+      <!-- If there is an author, display it in the very top left -->
+      <div v-if="props.author" class="author">
+        <div style="padding-top: 6px">{{ props.author }}</div>
+      </div>
 
       <div v-if="$nav.currentLayout !== 'cover'" class="footer">
         <div style="padding-top: 6px">{{ SlidevConfig.author }} - {{ SlidevConfig.title }} - {{ SlidevConfig.talkDate
