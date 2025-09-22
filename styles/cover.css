@@ -16,6 +16,16 @@ div.title_headers {
     left: 3%;
 }
 
+div.title_footers {
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    font-weight: 300;
+    text-align: left;
+    color: #c7d1d1;
+    opacity: 0.4;
+}
+
 div.title_gap {
     height: 25px;
 }
@@ -62,4 +72,3 @@ div.title_headers h5 {
     text-align: left;
     margin-top: -30px;
 }
-
