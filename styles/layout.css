@@ -74,6 +74,7 @@ body {
   font-family: "EB Garamond", "Palatino Linotype", "Book Antiqua", Palatino,
     "Microsoft YaHei", "Songti SC", serif;
 }
+
 h1,
 h2,
 h3,
@@ -152,31 +153,34 @@ h3 {
   padding: 5px;
 }
 
-.slidev-layout table {
-  width: fit-content;
-  font-size: medium;
-  margin: 0px auto;
-}
+.slidev-layout {
 
-.slidev-layout thead {
-  background-color: #440379;
-  color: white;
-}
+    table {
+        width: fit-content;
+        font-size: medium;
+        margin: 0px auto;
+    }
 
-.slidev-layout th {
-  text-align: center;
-  font-weight: 600;
-  padding: 0.5em;
-  padding-left: 1em;
-  padding-right: 1em;
-}
+    thead {
+        background-color: #440379;
+        color: white;
+    }
 
-.slidev-layout td {
-  text-align: right;
-}
+    th {
+        text-align: center;
+        font-weight: 600;
+        padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 
-.slidev-layout td:first-child {
-  text-align: left;
+    td {
+        text-align: right;
+    }
+
+    td:first-child {
+        text-align: left;
+    }
 }
 
 .slide-number {
