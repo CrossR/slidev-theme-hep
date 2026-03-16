@@ -71,7 +71,7 @@
 /* General Formatting... */
 
 .slidev-layout h1 {
-  padding-bottom: 0.8em;
+  padding-bottom: 0.4em;
 }
 
 /* But not for the cover slide */
@@ -174,6 +174,24 @@ h3 {
 
     p {
         line-height: 1.4;
+        margin-bottom: 0.6rem;
+    }
+
+    /* Tighten up the lists */
+    .slidev-layout ul {
+        margin-top: -0.4rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .slidev-layout li {
+        margin-bottom: 0.2rem;
+        line-height: 1.3;
+    }
+
+    /* Nested bullets should be even tighter */
+    .slidev-layout li ul li {
+        margin-bottom: 0.1rem;
+        font-size: 0.95em;
     }
 }
 
