@@ -17,11 +17,6 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  // Font size for the core content.
-  fontSize: {
-    type: String,
-    default: "1.1rem",
-  },
 });
 
 // We need to correct the number of slides.
@@ -85,10 +80,13 @@ const currentSlideNum = computed(() => {
   return trueSlideNumber;
 });
 
+// Calculate a general font size to use.
+const fontSize = SlidevConfig.themeConfig?.fontSize || '1.1rem';
+
 // Normal slide, but with a persistent footer
 </script>
 <template>
-  <div class="slidev-layout default" :style="`font-size: ${props.fontSize}`">
+  <div class="slidev-layout default" :style="`font-size: ${fontSize}`">
     <div class="my-auto" :class="props.width">
       <slot> </slot>
 

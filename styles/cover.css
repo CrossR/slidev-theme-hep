@@ -32,14 +32,15 @@ div.title_gap {
 
 div.title_headers h1 {
     color: white;
-    font-size: 56px;
+    font-size: 42px;
     font-weight: 500;
     text-align: left;
+    margin-bottom: 0.2rem;
 }
 
 div.title_headers h2 {
     color: #c7d1d1;
-    font-size: 34px;
+    font-size: 28px;
     font-weight: 350;
     text-align: left;
     margin-top: 0px;
@@ -49,7 +50,7 @@ div.title_headers h2 {
 
 div.title_headers h3 {
     color: #c7d1d1;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 300;
     text-align: left;
     padding-top: 0px;
@@ -59,7 +60,7 @@ div.title_headers h3 {
 
 div.title_headers h4 {
     color: #c7d1d1;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     text-align: left;
     opacity: 0.4;
@@ -67,7 +68,7 @@ div.title_headers h4 {
 
 div.title_headers h5 {
     color: #c7d1d1;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     text-align: left;
     margin-top: -30px;
