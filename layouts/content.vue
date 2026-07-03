@@ -80,6 +80,37 @@ const currentSlideNum = computed(() => {
   return trueSlideNumber;
 });
 
+// The author property could be one of 3 things:
+//
+// 1. Missing / Non-Existent. Not shown at all.
+// 2. A single string. Shown as is.
+// 3. An array of strings. We need to scale the font size down and show them all in a single line.
+//
+// First, just store a bool to indicate if we have multiple authors or not.
+const hasMultipleAuthors = computed(() => {
+  return Array.isArray(props.author) && props.author.length > 1;
+});
+
+// Then, compute a font size based on the number of authors. If we have multiple
+// authors, we want to scale the font size down a bit. By default, use a font-size
+// of 18pt, but if we have multiple authors, scale it down.
+const authorFontSize = computed(() => {
+  if (hasMultipleAuthors.value) {
+    return `${18 - (props.author.length)}pt`;
+  } else {
+    return "18pt";
+  }
+});
+
+// Finally, make the author string to display. If we have multiple authors, join them with commas.
+const authorString = computed(() => {
+  if (hasMultipleAuthors.value) {
+    return props.author.join(", ");
+  } else {
+    return props.author;
+  }
+});
+
 // Calculate a general font size to use.
 const fontSize = SlidevConfig.themeConfig?.fontSize || '1.1rem';
 
@@ -91,8 +122,8 @@ const fontSize = SlidevConfig.themeConfig?.fontSize || '1.1rem';
       <slot> </slot>
 
       <!-- If there is an author, display it in the very top left -->
-      <div v-if="props.author" class="author">
-        <div style="padding-top: 6px">{{ props.author }}</div>
+      <div v-if="props.author" class="author" :style="`font-size: ${authorFontSize}`">
+        <div style="padding-top: 6px">{{ authorString }}</div>
       </div>
 
       <div v-if="$nav.currentLayout !== 'cover'" class="footer">
